@@ -11,7 +11,7 @@ class ClientsController < ApplicationController
   def create
     @client = current_user.clients.build(client_params)
     if @client.save
-      redirect_to edit_client_path(@client), notice: "#{@client.title} has been added successfully"
+      redirect_to edit_client_path(@client), notice: "#{@client.first_name} has been added successfully"
     else
       # for dev mode to show all errors.
       redirect_to request.referrer, flash: { error: @client.errors.full_messages }
