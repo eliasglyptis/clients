@@ -1,0 +1,76 @@
+<div class="row align-items-center pt-5 mt-3">
+  <div class="col-md-10 mx-auto">
+    <h1>All Your Clients</h1>
+    
+    <div class="">
+      <div class="card-body">
+        
+        <% if current_user.clients.empty? %>
+
+          <div class="my-sm-5 py-sm-5 text-center">
+            
+            <%= link_to new_client_path, class: 'border-0 bg-transparent' do %>
+              <i class="add-client-icon display-1 text-muted bi bi-plus-circle-fill"></i>
+            <% end %>
+
+            <h4 class="mt-2 mb-3 text-body">You have not added any clients.</h4>
+
+            <%= link_to "Add your first client",  new_client_path, class: 'btn btn-primary' %>
+
+          </div>
+
+        <% else %>
+
+          <div class="row g-4">
+            <div class="col-lg-8 vstack gap-4">
+              <div class="card">
+                <div class="card-header border-0 pb-0">
+                  <h5 class="card-title">Your Clients</h5>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive-lg">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th class="text-nowrap" scope="col">First Name</th>
+                          <th class="text-nowrap" scope="col">Last Name</th>
+                          <th class="text-nowrap" scope="col">Email</th>
+                          <th class="text-nowrap" scope="col">Created On</th>
+                          <th class="text-nowrap" scope="col">Updated On</th>
+                          <th class="text-nowrap" scope="col">Edit Clients</th>
+                          <th class="text-nowrap" scope="col">Delete Clients</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% current_user.clients.sort.each do |c| %>
+                        <tr>
+                          <td class="text-nowrap"><%= link_to c.first_name, client_path(c) %></td>
+                          
+                          <td class="text-nowrap"><%= c.last_name %></td>
+                          <td class="text-nowrap"><%= c.email %></td>
+                          <td class="text-nowrap"><%= c.created_at.strftime('%d %b %Y') %></td>
+                          <td class="text-nowrap"><%= c.updated_at.strftime('%d %b %Y') %></td>
+                          <td class="text-nowrap">
+                            <%= link_to "Edit Client", edit_client_path(c), class: "btn btn-sm btn-warning"%>
+                          </td>
+                          <td class="text-nowrap">
+                            <%= link_to "Delete Client", c, method: :delete, data: {confirm: 'Are you surem you want to delete this client?'}, 
+                                class: "btn btn-sm btn-danger"%>
+                          </td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+          
+      </div>
+    </div>
+    
+  </div>
+</div>

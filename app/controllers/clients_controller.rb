@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
 
   before_action :authenticate_user!, except: [:show]
-  before_action :set_client, except: [:new, :create, :destroy]
+  before_action :set_client, except: [:new, :create, :index]
   before_action :is_authorised, only: [:edit, :update, :destroy]
 
   def new
@@ -11,7 +11,7 @@ class ClientsController < ApplicationController
   def create
     @client = current_user.clients.build(client_params)
     if @client.save
-      redirect_to edit_client_path(@client), notice: "#{@client.first_name} has been added successfully"
+      redirect_to clients_path, notice: "#{@client.first_name} has been added successfully"
     else
       # for dev mode to show all errors.
       redirect_to request.referrer, flash: { error: @client.errors.full_messages }
@@ -22,12 +22,23 @@ class ClientsController < ApplicationController
   end
 
   def update
+    if @client.update(client_params)
+      flash[:notice] = "#{@client.first_name} has been updated successfully..."
+    else
+      flash[:alert] = "Hmmm...can not process this action."
+    end
+    redirect_to request.referrer
   end
 
   def show
   end
 
+  def index
+  end
+
   def destroy
+    @client.destroy
+    redirect_to clients_path, notice: "Your client has been deleted successfully."
   end
 
   private

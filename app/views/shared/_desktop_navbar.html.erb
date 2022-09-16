@@ -10,13 +10,10 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">All Clients</a>
+          <%= link_to 'All Clients', clients_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Manage Clients</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Add Clients</a>
+          <%= link_to 'Add Clients', new_client_path, class: "nav-link" %>
         </li>
       </ul>
 

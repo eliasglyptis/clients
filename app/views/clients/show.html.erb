@@ -1,2 +1,15 @@
-<h1>Clients#show</h1>
-<p>Find me in app/views/clients/show.html.erb</p>
+<div class="row align-items-center pt-5 pb-5 pb-lg-3 mt-3">
+  <!-- Card START -->
+  <div class="col-md-8 mx-auto">
+    <div class="">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= client_full_name(@client) %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= @client.email %></h6>
+          <%= link_to "Edit Client", edit_client_path(@client), class: "card-link" %>
+          <%= link_to "Back to Client Index", clients_path, class: "card-link" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
