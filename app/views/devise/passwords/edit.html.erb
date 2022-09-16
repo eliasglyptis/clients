@@ -1,25 +1,51 @@
-<h2>Change your password</h2>
+<div class="row justify-content-center align-items-center vh-100 py-5">
+  <div class="col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
+    <div class="card card-body rounded-3 text-center p-4 p-sm-5">
+      <h1 class="mb-2">Change your password.</h1>
+      <p>Enter a new password here..</p>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, :class => 'mt-3' }) do |f| %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+
+        <div class="mb-3">
+
+          <div class="mb-3">
+            <label class="form-label">Enter your new password</label>
+            <%= f.password_field :password, autofocus: true, placeholder: "New password" %>
+            <small>
+              <% if @minimum_password_length %>
+                (<%= @minimum_password_length %> characters minimum)
+              <% end %>
+            </small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Confirm your new password</label>
+            <%= f.password_field :password_confirmation, autofocus: true, placeholder: "Confirm new password" %>
+            <small>
+              Confirm your new password
+            </small>
+          </div>
+
+        </div>
+
+        <div class="mb-3">
+          <p>Back to <%= link_to "Log In", new_user_session_path %></p>
+        </div>
+
+        <div class="mb-3">
+          <p>Need an account? <%= link_to "Create Account", new_user_registration_path %></p>
+        </div>
+
+        <div class="d-grid">
+          <%= f.submit "Change my password", class: "btn btn-lg btn-primary" %>
+        </div>
+
+      <% end %>
+    </div>
   </div>
+</div> 
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
