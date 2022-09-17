@@ -34,6 +34,7 @@ class ClientsController < ApplicationController
   end
 
   def index
+    @client = Client.order(:created_at)
   end
 
   def destroy
