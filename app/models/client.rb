@@ -5,7 +5,7 @@ class Client < ApplicationRecord
   before_save { 
     self.email = email.downcase 
     self.first_name = first_name.downcase.capitalize!
-    self.last_name = first_name.downcase.capitalize!
+    self.last_name = last_name.downcase.capitalize!
   }
 
   validates :first_name, :last_name, presence: true, length: { minimum: 2, maximum: 150 }
