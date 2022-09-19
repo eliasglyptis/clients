@@ -2,7 +2,7 @@ class ClientsController < ApplicationController
 
   before_action :authenticate_user!, except: [:show]
   before_action :set_client, except: [:new, :create, :index]
-  before_action :set_category, only: [:new, :edit, :update, :index, :show]
+  before_action :set_category, only: [:new, :edit, :update, :index]
   before_action :is_authorised, only: [:edit, :update, :destroy]
 
   def new
