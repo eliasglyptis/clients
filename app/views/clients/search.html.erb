@@ -54,50 +54,7 @@
         <h5 class="card-title text-light">Filter by category</h5>
       </div>
       <%= render "shared/categories" %>
-      <div class="card-body bg-light">
-        <div class="table-responsive-lg">
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="text-nowrap" scope="col">First Name</th>
-                <th class="text-nowrap" scope="col">Last Name</th>
-                <th class="text-nowrap" scope="col">Email</th>
-                <th class="text-nowrap" scope="col">Category</th>
-                <th class="text-nowrap" scope="col">Date Added</th>
-                <th class="text-nowrap" scope="col">Total Revenue</th>
-                <th class="text-nowrap" scope="col">Status</th>
-                <th class="text-nowrap" scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% cache current_user.clients do %>
-                <% current_user.clients.sort.each do |c| %>
-                  <% cache c do %>
-                  <tr>
-                    <td class="text-nowrap"><%= link_to c.first_name, client_path(c) %></td>
-                    
-                    <td class="text-nowrap"><%= c.last_name %></td>
-                    <td class="text-nowrap"><%= c.email %></td>
-                      <td class="text-nowrap"><%= c.category.name %></td>
-                    <td class="text-nowrap"><%= c.created_at.strftime('%d %b %Y') %></td>
-                    <td class="text-nowrap">
-                      <%= number_to_currency(c.revenue) %>
-                    </td>
-                    <td class="text-nowrap <%= active_class(c.active) %>">
-                      <%= c.active ? 'Active' : 'Inactive' %>
-                    </td>
-                    <td class="text-nowrap">
-                      <%= link_to "Edit Client", edit_client_path(c), class: "btn btn-sm btn-accent2" %>
-                      <%= link_to "Delete Client", c, method: :delete, data: {confirm: 'Are you sure you want to delete this client?'}, class: "btn btn-sm btn-danger text-white"%>
-                    </td>
-                  </tr>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <%= render partial: "shared/clients", object: @client %>
     </div>
   </div>
 

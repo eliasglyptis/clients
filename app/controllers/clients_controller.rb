@@ -46,6 +46,9 @@ class ClientsController < ApplicationController
   def search
     # In case no categories are provided, make it nil
     @category = Category.find(params[:category]) if params[:category].present?
+
+    # get all clients in db with templated condition, and compare it to arguements passed in the url
+    @clients = Client.where("active = ? AND clients.first_name ILIKE ? AND category_id = ?", true, "%#{params[:f]}%", params[:category]) 
   end
 
  
