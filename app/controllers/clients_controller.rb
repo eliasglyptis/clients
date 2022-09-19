@@ -48,7 +48,31 @@ class ClientsController < ApplicationController
     @category = Category.find(params[:category]) if params[:category].present?
 
     # get all clients in db with templated condition, and compare it to arguements passed in the url
-    @clients = Client.where("active = ? AND clients.first_name ILIKE ? AND category_id = ?", true, "%#{params[:f]}%", params[:category]) 
+    #@clients = Client.where("active = ? AND clients.first_name ILIKE ? AND category_id = ?", true, "%#{params[:f]}%", params[:category]) 
+
+    # Refactoring code based on https://apidock.com/rails/ActiveRecord/QueryMethods/where
+    @s = params[:s]
+
+    search_condition = []
+    search_condition[0] = "clients.active = true"
+
+    # first condition - the first value, index 0 of the array will be a template, and second will check if @s is not blank and add search_condition into index 0, then push and create another value in the array
+    if !@s.blank?
+      search_condition[0] += ' AND clients.first_name ILIKE ?'
+      search_condition.push "#{@s}"
+      # keep adding elements into the array
+    end
+    
+    # second condition
+    if !params[:category].blank?
+      search_condition[0] += ' AND category_id = ?'
+      search_condition.push params[:category]
+      # keep adding elements into the array, to create the third value in the array.
+    end
+
+    @clients = Client.where(search_condition)
+
+
   end
 
  
