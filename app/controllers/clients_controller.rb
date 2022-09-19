@@ -1,8 +1,8 @@
 class ClientsController < ApplicationController
 
   before_action :authenticate_user!, except: [:show]
-  before_action :set_client, except: [:new, :create, :index]
-  before_action :set_category, only: [:new, :edit, :update, :index]
+  before_action :set_client, except: [:new, :create, :index, :search]
+  before_action :set_category, only: [:new, :edit, :update, :index, :search]
   before_action :is_authorised, only: [:edit, :update, :destroy]
 
   def new
@@ -41,6 +41,11 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     redirect_to clients_path, notice: "Your client has been deleted successfully."
+  end
+
+  def search
+    # In case no categories are provided, make it nil
+    @category = Category.find(params[:category]) if params[:category].present?
   end
 
  

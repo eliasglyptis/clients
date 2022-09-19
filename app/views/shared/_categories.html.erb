@@ -1,7 +1,7 @@
 <nav class="nav border-top border-primary">
   <div class="scrollable-nav">
     <% @categories.each do |c| %>
-      <a class="nav-link" id="<%= c.id %>"  href="#"><%= c.name %></a>
+      <%= link_to "#{c.name}", search_path(category: c.id), class: 'nav-link' %>
     <% end %>
   </div>
 </nav>
