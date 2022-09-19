@@ -1,5 +1,29 @@
 <div class="row pt-5">
   <h1>Search Results</h1>
+  <div class="col-12 mb-3">
+    <div class="card">
+      <div class="card-body bg-light">
+        <div class="d-flex bd-highlight">
+          <div class="p-2 flex-grow-1 align-self-center">
+            <h5 class="text-primary">
+              Clients: <% if @category %> <%= @category.name %> <% end %>
+            </h5>
+          </div>
+          <div class="p-2 bd-highlight align-self-center">
+            <%= select_tag 'sort', options_for_select(
+              [
+                ['Revenue Low to High', ''],
+                ['Revenue High to Low', ''],
+                ['Most Recent Customers', ''],
+                ['Oldest Customers', ''],
+              ]
+            ), class: "form-select" %>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="col-lg-3 col-md-12 mb-4">
     <div class="d-flex flex-column p-3 bg-light">
