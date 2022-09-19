@@ -56,3 +56,8 @@ $theme-colors: (
 thead, tbody, tfoot, tr, td, th {
   border-color: map-get($theme-colors, "accent3")!important;
 }
+
+.table-responsive-lg {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
