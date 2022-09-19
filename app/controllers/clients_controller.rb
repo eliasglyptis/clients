@@ -2,6 +2,7 @@ class ClientsController < ApplicationController
 
   before_action :authenticate_user!, except: [:show]
   before_action :set_client, except: [:new, :create, :index]
+  before_action :set_category, only: [:new, :edit, :update, :index, :show]
   before_action :is_authorised, only: [:edit, :update, :destroy]
 
   def new
@@ -42,9 +43,14 @@ class ClientsController < ApplicationController
     redirect_to clients_path, notice: "Your client has been deleted successfully."
   end
 
+ 
   private
     def set_client
       @client = Client.find(params[:id])
+    end
+
+    def set_category
+      @categories = Category.all
     end
 
     def is_authorised
@@ -52,6 +58,6 @@ class ClientsController < ApplicationController
     end
 
     def client_params
-      params.require(:client).permit(:first_name, :last_name, :email)
+      params.require(:client).permit(:first_name, :last_name, :email, :category_id)
     end
 end

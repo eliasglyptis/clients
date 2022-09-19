@@ -1,14 +1,14 @@
 <div class="row align-items-center pt-5 pb-5 pb-lg-3 mt-3">
   <!-- Card START -->
   <div class="col-md-8 mx-auto">
-    <div class="">
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title"><%= client_full_name(@client) %></h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%= @client.email %></h6>
-          <%= link_to "Edit Client", edit_client_path(@client), class: "card-link" %>
-          <%= link_to "Back to Client Index", clients_path, class: "card-link" %>
-        </div>
+    <div class="card bg-primary text-light">
+      <div class="card-header">Category: <%= @client.category.name %></div>
+      <div class="card-body">
+        <h5 class="card-title"><%= client_full_name(@client) %></h5>
+        <h6 class="card-subtitle mb-2 text-light"><%= @client.email %></h6>
+        <p>Created on: <%= @client.created_at.strftime('%d %b %Y') %></p>
+        <%= link_to "Edit Client", edit_client_path(@client), class: "card-link text-white" %>
+        <%= link_to "Back to Client Index", clients_path, class: "card-link text-white" %>
       </div>
     </div>
   </div>

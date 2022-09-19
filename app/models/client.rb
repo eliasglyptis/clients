@@ -1,6 +1,6 @@
 class Client < ApplicationRecord
-  require 'uri'
   belongs_to :user
+  belongs_to :category
 
   before_save { 
     self.email = email.downcase 

@@ -2,7 +2,6 @@
   <div class="col-md-10 mx-auto">
     <h1>All Your Clients</h1>
     
-    <div class="">
       <div class="card-body">
         
         <% if current_user.clients.empty? %>
@@ -35,8 +34,8 @@
                           <th class="text-nowrap" scope="col">First Name</th>
                           <th class="text-nowrap" scope="col">Last Name</th>
                           <th class="text-nowrap" scope="col">Email</th>
+                           <th class="text-nowrap" scope="col">Category</th>
                           <th class="text-nowrap" scope="col">Created On</th>
-                          <th class="text-nowrap" scope="col">Updated On</th>
                           <th class="text-nowrap" scope="col">Edit Clients</th>
                           <th class="text-nowrap" scope="col">Delete Clients</th>
                         </tr>
@@ -50,13 +49,13 @@
                               
                               <td class="text-nowrap"><%= c.last_name %></td>
                               <td class="text-nowrap"><%= c.email %></td>
+                               <td class="text-nowrap"><%= c.category.name %></td>
                               <td class="text-nowrap"><%= c.created_at.strftime('%d %b %Y') %></td>
-                              <td class="text-nowrap"><%= c.updated_at.strftime('%d %b %Y') %></td>
                               <td class="text-nowrap">
                                 <%= link_to "Edit Client", edit_client_path(c), class: "btn btn-sm btn-accent2"%>
                               </td>
                               <td class="text-nowrap">
-                                <%= link_to "Delete Client", c, method: :delete, data: {confirm: 'Are you surem you want to delete this client?'}, class: "btn btn-sm btn-danger text-white"%>
+                                <%= link_to "Delete Client", c, method: :delete, data: {confirm: 'Are you sure you want to delete this client?'}, class: "btn btn-sm btn-danger text-white"%>
                               </td>
                             </tr>
                             <% end %>
@@ -73,7 +72,6 @@
         <% end %>
           
       </div>
-    </div>
     
   </div>
 </div>

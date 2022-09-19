@@ -14,3 +14,42 @@ $theme-colors: (
   "danger":     #ee1438,
 );
 
+.nav a {
+  color: map-get($theme-colors, "accent1");
+}
+
+.nav a:hover {
+  color: map-get($theme-colors, "primary");
+}
+
+.scrollable-nav {
+  display: block;
+  width: 100%; 
+  overflow-x: scroll;
+  white-space: nowrap;
+  height: auto;
+  padding: 10px;
+  margin: 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: map-get($theme-colors, "light");
+}
+
+.scrollable-nav .nav-link {
+  display: inline-block;
+}
+
+.scrollable-nav::-webkit-scrollbar:horizontal {
+  height: 11px;
+}
+
+.nav .scrollable-nav::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid map-get($theme-colors, "light");
+  background-color: map-get($theme-colors, "primary");
+}
+
+.nav .scrollable-nav::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+

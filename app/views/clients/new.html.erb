@@ -1,36 +1,39 @@
 <div class="row align-items-center pt-5 mt-3">
   <!-- Card START -->
-  <div class="col-md-8 mx-auto">
+  <div class="col-lg-10 col-xs-12 mx-auto">
     <h1>Clients</h1>
     <p class="mb-4">Let's add a Client.</p>
-    
-    <div class="">
      
-      <div class="card mb-4">
-        
-        <div class="card-body">
-          <%= form_for @client, html: {class: 'row g-3'} do |f| %>
+    <div class="card mb-4">
+      <div class="card-body">
+        <%= form_for @client, html: {class: 'row g-3'} do |f| %>
 
-            <div class="col-sm-6 col-lg-4">
-              <label class="form-label">Client first name</label>
-              <%= f.text_field :first_name, autocomplete: 'first-name', class: 'form-control' %>
-            </div>
+          <div class="col-md-6">
+            <label class="form-label">Client first name</label>
+            <%= f.text_field :first_name, autocomplete: 'first-name', class: 'form-control' %>
+          </div>
 
-            <div class="col-sm-6 col-lg-4">
-              <label class="form-label">Client last name</label>
-              <%= f.text_field :last_name, autocomplete: 'last-name', class: 'form-control' %>
-            </div>
-            
-            <div class="col-sm-6 col-lg-4">
-              <label class="form-label">Client email</label>
-              <%= f.text_field :email, autocomplete: 'email', class: 'form-control' %>
-            </div>
+          <div class="col-md-6">
+            <label class="form-label">Client last name</label>
+            <%= f.text_field :last_name, autocomplete: 'last-name', class: 'form-control' %>
+          </div>
+          
+          <div class="col-md-8">
+            <label class="form-label">Client email</label>
+            <%= f.text_field :email, autocomplete: 'email', class: 'form-control' %>
+          </div>
 
-            <%= f.submit "Add Client", class: 'btn btn-sm btn-primary mb-0' %>
-            
-          <% end %>
-        </div>
+          <div class="col-md-4">
+            <label class="form-label">Select Category</label>
+            <%= f.select(:category_id, options_for_select(@categories.map{ |c| [c.name, c.id] }), 
+                {:prompt => "Choose Category"}, {class: 'form-select js-choice rounded'}) %>
+          </div>
+
+          <%= f.submit "Add Client", class: 'btn btn-sm btn-primary mb-0' %>
+          
+        <% end %>
       </div>
     </div>
+
   </div>
 </div>
