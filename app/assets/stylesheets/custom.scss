@@ -53,3 +53,6 @@ $theme-colors: (
   -webkit-appearance: none;
 }
 
+thead, tbody, tfoot, tr, td, th {
+  border-color: map-get($theme-colors, "accent3")!important;
+}

@@ -29,6 +29,20 @@
             selected: @client.category_id), {}, {class: 'form-select rounded'}) %>
           </div>
 
+          <div class="col-md-6">
+            <label class="form-label">Total Revenue From Client</label>
+            <%= f.number_field :revenue, autocomplete: 'revenue', class: 'form-control' %>
+          </div>
+
+          <div class="col-md-6 p-2 mr-2 mt-auto">
+            <div class="form-check pl-3">
+              <%= f.check_box :active, { class: 'form-check-input' } %>
+              <label class="form-check-label">
+                <%= @client.active ? 'Currently Active' : 'Not Active' %>
+              </label>
+            </div>
+          </div>
+
           <%= f.submit "Update Client", class: 'btn btn-sm btn-primary mb-0' %>
           
         <% end %>
