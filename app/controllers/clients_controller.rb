@@ -52,6 +52,8 @@ class ClientsController < ApplicationController
 
     # Refactoring code based on https://apidock.com/rails/ActiveRecord/QueryMethods/where
     @s = params[:s]
+    @min = params[:min]
+    @max = params[:max]
 
     search_condition = []
     search_condition[0] = "clients.active = true"
@@ -69,9 +71,22 @@ class ClientsController < ApplicationController
       search_condition.push params[:category]
       # keep adding elements into the array, to create the third value in the array.
     end
+    
+    if !params[:min].blank?
+      search_condition[0] += ' AND revenue >= ?'
+      search_condition.push @min
+      # keep value of the min.
+    end
 
-    @clients = Client.where(search_condition)
+    if !params[:max].blank?
+      search_condition[0] += ' AND revenue <= ?'
+      search_condition.push @max
+      # keep value of the max.
+    end
 
+    # we join the revenue
+    @clients = Client.select(
+      "clients.id, clients.first_name, clients.last_name, clients.email, clients.category_id, clients.created_at, clients.revenue, clients.active").where(search_condition)
 
   end
 

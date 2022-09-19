@@ -26,26 +26,35 @@
   </div>
 
   <div class="col-lg-3 col-md-12 mb-4">
-    <div class="d-flex flex-column p-3 bg-light">
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search by client name" aria-label="Search">
-      </form>
+    <%= form_tag '', class: 'd-flex flex-column p-3 bg-light', method: :get do |f| %>
+      <%= hidden_field_tag "category", @category ? @category.id : '' %>
+      <!-- If we have s parameters from the url show that value else show nothing -->
+      <%= text_field_tag 's', @s || '', class: 'form-control me-2', placeholder: 'Search by client name' %>
+      
       <hr>
+
       <h5>Search by Revenue</h5>
       <ul class="nav nav-pills flex-column mb-auto">
         <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">$</span>
-          <input type="text" class="form-control" placeholder="Min" aria-label="Username" aria-describedby="basic-addon1">
+          <span class="input-group-text">$</span>
+          <%= number_field_tag 'min', @min || '', class: 'form-control', placeholder: 'Min' %>
         </div>
         <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">$</span>
-          <input type="text" class="form-control" placeholder="Max" aria-label="Username" aria-describedby="basic-addon1">
+          <span class="input-group-text">$</span>
+          <%= number_field_tag 'max', @max || '', class: 'form-control', placeholder: 'Max' %>
         </div>
       </ul>
+
       <hr>
-      <a type="button" class="btn btn-primary">Apply Filters</a>
-      <a type="button" class="btn btn-secondary mt-2">Clear All Filters</a>
-    </div>
+
+      <button class="btn btn-secondary mt-2" type="submit">Apply Filters</button>
+      
+    <% end %>
+
+    <%= form_tag '', method: :get, class: 'd-flex flex-column' do %>
+      <button class="btn btn-dark btn-block mt-2" type="submit">Clear All Filters</button>
+    <% end %>
+    
   </div>
   
   <div class="col-lg-9 col-md-12">
