@@ -9,17 +9,22 @@
               Clients: <% if @category %> <%= @category.name %> <% end %>
             </h5>
           </div>
-          <div class="p-2 bd-highlight align-self-center">
-            <%= select_tag 'sort', options_for_select(
-              [
-                ['Revenue Low to High', ''],
-                ['Revenue High to Low', ''],
-                ['Most Recent Customers', ''],
-                ['Oldest Customers', ''],
-              ]
-            ), class: "form-select" %>
-           
-          </div>
+          <%= form_tag '', method: :get do %>
+            <%= hidden_field_tag "category", @category ? @category.id : '' %>
+
+            <div class="p-2 bd-highlight align-self-center">
+              <%= select_tag 'sort', options_for_select(
+                [
+                  ['Revenue High to Low', 'revenue desc'],
+                  ['Revenue Low to High', 'revenue asc'],
+                  ['Most Recent Customers', 'clients.created_at desc'],
+                  ['Oldest Customers', 'clients.created_at asc'],
+                ], selected: @sort
+              ), class: "form-select", onchange: "this.form.submit();" %>
+            
+            </div>
+
+          <% end %>
         </div>
       </div>
     </div>
@@ -27,7 +32,12 @@
 
   <div class="col-lg-3 col-md-12 mb-4">
     <%= form_tag '', class: 'd-flex flex-column p-3 bg-light', method: :get do |f| %>
+      
       <%= hidden_field_tag "category", @category ? @category.id : '' %>
+      
+      <!-- Add sort parameters, because this form is defferent than the sort form above. -->
+      <%= hidden_field_tag "sort", @sort %>
+      
       <!-- If we have s parameters from the url show that value else show nothing -->
       <%= text_field_tag 's', @s || '', class: 'form-control me-2', placeholder: 'Search by client name' %>
       

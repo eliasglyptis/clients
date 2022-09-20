@@ -54,6 +54,7 @@ class ClientsController < ApplicationController
     @s = params[:s]
     @min = params[:min]
     @max = params[:max]
+    @sort = params[:sort].present? ? params[:sort] : "revenue desc"
 
     search_condition = []
     search_condition[0] = "clients.active = true"
@@ -85,8 +86,9 @@ class ClientsController < ApplicationController
     end
 
     # we join the revenue
-    @clients = Client.select(
-      "clients.id, clients.first_name, clients.last_name, clients.email, clients.category_id, clients.created_at, clients.revenue, clients.active").where(search_condition)
+    @clients = Client.select("clients.id, clients.first_name, clients.last_name, clients.email, 
+                              clients.category_id, clients.created_at, clients.revenue, 
+                              clients.active").where(search_condition).order(@sort)
 
   end
 
