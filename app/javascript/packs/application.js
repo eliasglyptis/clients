@@ -4,6 +4,8 @@
 // that code so it'll be compiled.
 
 import 'bootstrap';
+import 'bootstrap-icons/font/bootstrap-icons.css'
+
 
 require("@rails/ujs").start()
 require("turbolinks").start()

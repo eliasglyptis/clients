@@ -1,24 +1,32 @@
+// $white: #ffffff;
+
+// $theme-colors: (
+//   "light":      #ecd8cb,
+//   "dark":       #140601,
+//   "primary":    #732817,
+//   "secondary":  #a45841,
+//   "info":       #d28b6c,
+//   "accent1":    #6b3c33,
+//   "accent2":    #b35e54,
+//   "accent3":    #ccab93,
+//   "success":    #57a513,
+//   "warning":    #febf67,
+//   "danger":     #ee1438,
+// );
 $white: #ffffff;
 
 $theme-colors: (
-  "light":      #ecd8cb,
-  "dark":       #140601,
-  "primary":    #732817,
-  "secondary":  #a45841,
-  "info":       #d28b6c,
-  "accent1":    #6b3c33,
-  "accent2":    #b35e54,
-  "accent3":    #ccab93,
-  "success":    #57a513,
-  "warning":    #febf67,
-  "danger":     #ee1438,
+    "light":      #e2dfe0,
+    "dark":       #08193b,
+    "primary":    #454e83,
+    "secondary":  #d31274,
+    "info":       #7f72ab,
+    "success":    #57ba8d,
+    "warning":    #e0ca0c,
+    "danger":     #ee1c04,
 );
 
-.nav a {
-  color: map-get($theme-colors, "accent1");
-}
-
-.nav a:hover {
+.nav a, .nav a:hover {
   color: map-get($theme-colors, "primary");
 }
 
@@ -60,4 +68,17 @@ thead, tbody, tfoot, tr, td, th {
 .table-responsive-lg {
   overflow-x: scroll;
   white-space: nowrap;
+}
+
+#desktop-user-dropdown {
+  background-color: map-get($theme-colors, "primary")!important;
+}
+#desktop-user-dropdown {
+  a, i {
+    color: map-get($theme-colors, "light")!important;
+  }
+  a:hover, i:hover {
+    background-color: map-get($theme-colors, "primary")!important;
+    color: map-get($theme-colors, "light")!important;
+  }
 }
