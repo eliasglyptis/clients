@@ -14,8 +14,8 @@
         </tr>
       </thead>
       <tbody>
-        <% cache @clients do %>
-          <% @clients.each do |c| %>
+        <% cache current_user.clients do %>
+          <% current_user.clients.each do |c| %>
             <% cache c do %>
             <tr>
               <td class="text-nowrap"><%= link_to c.first_name, client_path(c) %></td>
