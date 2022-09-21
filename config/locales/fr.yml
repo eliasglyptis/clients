@@ -1,0 +1,10 @@
+fr:
+  # Unorganized, no need to use . in home page
+  greet: "Bienvenue dans votre application client"
+
+  # Orgnized can use . in view to locate
+  clients:
+   index:
+    your_clients: "Tous Vos Clients!"
+    clients_greeting_html: "Nous sommes des services fantaisistes qui agissent <em>comme des canards</em>"
+

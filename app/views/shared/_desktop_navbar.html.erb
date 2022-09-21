@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to 'All Clients', clients_path, class: "nav-link" %>
@@ -15,7 +15,19 @@
         <li class="nav-item">
           <%= link_to 'Add Clients', new_client_path, class: "nav-link" %>
         </li>
+        <li class="nav-item">
+          <%= link_to 'Search Clients', search_path, class: "nav-link" %>
+        </li>
+
       </ul>
+
+      <div class="d-flex">
+        <div class="p-1">
+          <%= link_to 'EN', { :locale=>'en' }, class: "btn btn-sm btn-link" %> |
+          <%= link_to 'FR', { :locale=>'fr' }, class: "btn btn-sm btn-link" %>
+        </div>
+      </div>
+
 
       <ul class="navbar-nav">
         <% if (user_signed_in?) %>
@@ -39,5 +51,7 @@
          
       </ul>
     </div>
+
+
   </div>
 </nav>

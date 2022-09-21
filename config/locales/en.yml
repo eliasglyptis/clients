@@ -30,4 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  # Unorganized, no need to use . in home page
+  greet: "Welcome to your client app"
+   
+  clients:
+   index:
+    your_clients: "All Your Clients" 
+    clients_greeting_html: "Here is a list of <em>all your clients</em>"
