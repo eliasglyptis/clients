@@ -1,10 +1,10 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.17.1"
+lock "~> 3.11"
 
 set :application, "clientsapp"
 set :repo_url, "git@github.com:eliasglyptis/clients.git"
 
-set :deploy_to, "/home/deploy/#{fetch :application}"
+set :deploy_to, "/home/elias/#{fetch :application}"
 
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", "public/uploads", "vendor", "storage", "vendor/bundle", ".bundle"
 
