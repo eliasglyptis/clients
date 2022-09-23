@@ -8,6 +8,8 @@ set :deploy_to, "/home/clients/#{fetch :application}"
 
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", "public/uploads", "vendor", "storage", "vendor/bundle", ".bundle"
 
+append :linked_files, "config/database.yml", 'config/master.key'
+
 set :keep_releases, 5
 
 # Default branch is :master
