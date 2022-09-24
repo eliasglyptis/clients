@@ -86,7 +86,7 @@ class ClientsController < ApplicationController
     end
 
     # we join the revenue
-    @clients = Client.select("clients.id, clients.first_name, clients.last_name, clients.email, 
+    @clients = current_user.clients.select("clients.id, clients.first_name, clients.last_name, clients.email, 
                               clients.category_id, clients.created_at, clients.revenue, 
                               clients.active").where(search_condition).order(@sort)
 
